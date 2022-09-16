@@ -6,71 +6,126 @@
     android:layout_height="match_parent"
     tools:context=".FirstFragment">
 
-    <TextView
-        android:id="@+id/textview_first_name"
-        android:layout_width="106dp"
-        android:layout_height="20dp"
-        android:text="@string/first_name"
-        tools:layout_editor_absoluteX="186dp"
-        tools:layout_editor_absoluteY="76dp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="300dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:layout_width="111dp"
-        android:layout_height="43dp"
-        android:width="100px"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="186dp"
-        tools:layout_editor_absoluteY="111dp" />
+        <TextView
+            android:id="@+id/textview_last_name"
+            android:layout_width="100dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/last_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/textview_last_name"
-        android:layout_width="100dp"
-        android:layout_height="23dp"
-        android:text="@string/last_name"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="77dp" />
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="103dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:layout_width="103dp"
-        android:layout_height="45dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="111dp" />
+        <TextView
+            android:id="@+id/textview_first_name"
+            android:layout_width="106dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/first_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/date_of_birth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Date de naissance"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="240dp" />
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="111dp"
+            android:layout_height="43dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:width="100px"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <DatePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="200px"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="283dp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="150dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <TextView
-        android:id="@+id/textview_city"
-        android:layout_width="102dp"
-        android:layout_height="22dp"
-        android:text="Ville de naissance"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="175dp" />
+        <TextView
+            android:id="@+id/textview_city"
+            android:layout_width="102dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="1dp"
+            android:text="Ville de naissance"
+            app:layout_constraintBottom_toTopOf="@+id/editText3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:layout_width="104dp"
-        android:layout_height="43dp"
-        android:width="100px"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="216dp" />
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="104dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="20dp"
+            android:width="100px"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/date_of_birth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Date de naissance"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="280dp"
+            android:layout_height="250dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:width="200px"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date_of_birth"
+            tools:ignore="MissingConstraints" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
