@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.tp1_mmm.viewmodels.SubmitViewModel
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
+import com.example.tp1_mmm.R
 import com.example.tp1_mmm.databinding.FragmentFirstBinding
 
 /**
@@ -50,6 +52,10 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.NextFrag.setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        }
     }
 
     override fun onDestroyView() {
