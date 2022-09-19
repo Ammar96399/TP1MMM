@@ -2,6 +2,8 @@ package com.example.tp1_mmm.views
 
 import android.os.Bundle
 import android.view.*
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.tp1_mmm.viewmodels.SubmitViewModel
@@ -52,6 +54,15 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val spinner: Spinner = view.findViewById(R.id.spinner)
+
+        ArrayAdapter
+            .createFromResource(this.requireContext(), R.array.planet_array, android.R.layout.simple_spinner_item)
+            .also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                spinner.adapter = adapter
+            }
 
         binding.NextFrag.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)

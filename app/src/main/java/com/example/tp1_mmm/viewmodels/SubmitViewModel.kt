@@ -1,15 +1,21 @@
 package com.example.tp1_mmm.viewmodels
 
+import android.app.Application
+import android.content.Intent
+import android.net.Uri
 import android.os.Handler
 import android.view.View
 import androidx.databinding.Observable
 import androidx.databinding.PropertyChangeRegistry
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.test.core.app.launchActivity
 import com.example.tp1_mmm.models.Person
+import com.example.tp1_mmm.views.MainActivity
 
 
-class SubmitViewModel: ViewModel(), Observable {
+class SubmitViewModel(private val app: Application): AndroidViewModel(app), Observable {
 
     // Implementation took from
     // https://developer.android.com/topic/libraries/data-binding/architecture
@@ -35,6 +41,7 @@ class SubmitViewModel: ViewModel(), Observable {
     val firstname = MutableLiveData<String>()
     val lastname = MutableLiveData<String>()
     val birthPlace = MutableLiveData<String>()
+    val birthRegion = MutableLiveData<String>()
 
     private val busy = MutableLiveData<Int>(8)
     val setPasswordEnabled = MutableLiveData(View.INVISIBLE)
@@ -58,6 +65,11 @@ class SubmitViewModel: ViewModel(), Observable {
                 busy.value = 8
                 setPasswordEnabled.value = View.INVISIBLE
                 validateButtonName.value = "Confirm"
+
+                // Problem that the intent will crash
+
+//                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://fr.wikipedia.org"))
+//                app.startActivity(intent)
             }, 1500)
         }
     }
