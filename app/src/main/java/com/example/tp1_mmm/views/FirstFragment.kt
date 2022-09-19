@@ -1,10 +1,8 @@
 package com.example.tp1_mmm.views
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.tp1_mmm.viewmodels.SubmitViewModel
 import android.widget.Toast
@@ -32,6 +30,8 @@ class FirstFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
 
+        setHasOptionsMenu(true)
+
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
 
         val viewModel = ViewModelProvider(this)[SubmitViewModel::class.java]
@@ -56,6 +56,11 @@ class FirstFragment : Fragment() {
         binding.NextFrag.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.first_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onDestroyView() {

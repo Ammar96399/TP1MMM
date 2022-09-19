@@ -1,6 +1,7 @@
 package com.example.tp1_mmm.viewmodels
 
 import android.os.Handler
+import android.view.View
 import androidx.databinding.Observable
 import androidx.databinding.PropertyChangeRegistry
 import androidx.lifecycle.MutableLiveData
@@ -35,16 +36,26 @@ class SubmitViewModel: ViewModel(), Observable {
     val lastname = MutableLiveData<String>()
     val birthPlace = MutableLiveData<String>()
 
-    val busy = MutableLiveData<Int>(8)
+    private val busy = MutableLiveData<Int>(8)
+    val setPasswordEnabled = MutableLiveData(View.INVISIBLE)
 
     val person = MutableLiveData<Person>()
 
-    fun onLoginClicked(): Unit {
-        busy.value = 0
-        Handler().postDelayed(Runnable {
-            val pp = Person(firstname.value ?: "foo", lastname.value ?: "bar", birthPlace.value ?: "baz")
-            person.value = pp
-            busy.value = 8
-        }, 1500)
+    fun onSubmitClicked(): Unit {
+        if (setPasswordEnabled.value == View.INVISIBLE) {
+            setPasswordEnabled.value = View.VISIBLE
+        } else {
+            busy.value = 0
+            Handler().postDelayed({
+                val pp = Person(
+                    firstname.value ?: "foo",
+                    lastname.value ?: "bar",
+                    birthPlace.value ?: "baz"
+                )
+                person.value = pp
+                busy.value = 8
+                setPasswordEnabled.value = View.INVISIBLE
+            }, 1500)
+        }
     }
 }

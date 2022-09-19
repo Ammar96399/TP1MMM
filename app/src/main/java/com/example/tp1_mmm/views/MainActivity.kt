@@ -1,6 +1,8 @@
 package com.example.tp1_mmm.views
 
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -9,6 +11,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.example.tp1_mmm.R
 import com.example.tp1_mmm.databinding.ActivityMainBinding
 
@@ -34,6 +37,7 @@ class MainActivity : AppCompatActivity() {
                     .setAction("Action", null).show()
         }
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
