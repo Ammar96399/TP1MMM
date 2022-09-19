@@ -38,12 +38,14 @@ class SubmitViewModel: ViewModel(), Observable {
 
     private val busy = MutableLiveData<Int>(8)
     val setPasswordEnabled = MutableLiveData(View.INVISIBLE)
+    val validateButtonName = MutableLiveData<String>("Confirm")
 
     val person = MutableLiveData<Person>()
 
     fun onSubmitClicked(): Unit {
         if (setPasswordEnabled.value == View.INVISIBLE) {
             setPasswordEnabled.value = View.VISIBLE
+            validateButtonName.value = "Validate"
         } else {
             busy.value = 0
             Handler().postDelayed({
@@ -55,6 +57,7 @@ class SubmitViewModel: ViewModel(), Observable {
                 person.value = pp
                 busy.value = 8
                 setPasswordEnabled.value = View.INVISIBLE
+                validateButtonName.value = "Confirm"
             }, 1500)
         }
     }
