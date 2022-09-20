@@ -10,4 +10,5 @@
 
     <string name="first_name">Prénom</string>
     <string name="last_name">Nom</string>
+    <string name="next_button">Next</string>
 </resources>

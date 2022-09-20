@@ -7,14 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.tp1_mmm.R
-import com.example.tp1_mmm.databinding.FragmentSecondBinding
+import com.example.tp1_mmm.databinding.FragmentThirdBinding
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class ThirdFragment : Fragment() {
 
-    private var _binding: FragmentSecondBinding? = null
+    private var _binding: FragmentThirdBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,7 +25,7 @@ class ThirdFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentThirdBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -33,8 +33,15 @@ class ThirdFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_ThirdFragment_to_FirstFragment)
+        binding.buttonThird.setOnClickListener {
+            findNavController().let {
+                it.navigate(R.id.action_ThirdFragment_to_SecondFragment)
+            }
+        }
+        binding.buttonThird2.setOnClickListener {
+            findNavController().let {
+                it.navigate(R.id.action_ThirdFragment_to_FirstFragment)
+            }
         }
     }
 
