@@ -6,6 +6,7 @@ Known issues:
 - Data binding receiving null values
 - Calendar binding type issue
 - Passing data through fragments is not working
+- Intent crashes
 
 Could be improved:
 

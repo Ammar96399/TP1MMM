@@ -5,9 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.tp1_mmm.R
+import com.example.tp1_mmm.databinding.FragmentRecyclerListBinding
 import com.example.tp1_mmm.databinding.FragmentThirdBinding
+import com.example.tp1_mmm.viewmodels.RecyclerListViewModel
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -24,10 +27,12 @@ class ThirdFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-
-        _binding = FragmentThirdBinding.inflate(inflater, container, false)
-        return binding.root
-
+        FragmentThirdBinding.inflate(inflater, container, false).let {
+            _binding = it
+            it.viewModel = ViewModelProvider(this)[RecyclerListViewModel::class.java]
+            it.lifecycleOwner = this
+            return it.root
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
