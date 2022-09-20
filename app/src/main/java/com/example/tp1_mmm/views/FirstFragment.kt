@@ -69,6 +69,24 @@ class FirstFragment : Fragment() {
         }
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_enable_password -> {
+                binding.submitViewModel?.enablePassword()
+                true
+            }
+            R.id.menu_disable_password -> {
+                binding.submitViewModel?.disablePassword()
+                true
+            }
+            R.id.menu_clear_fields -> {
+                binding.submitViewModel?.clear()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.first_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)

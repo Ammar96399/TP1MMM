@@ -49,10 +49,27 @@ class SubmitViewModel(private val app: Application): AndroidViewModel(app), Obse
 
     val person = MutableLiveData<Person>()
 
+    fun enablePassword(): Unit {
+        setPasswordEnabled.value = View.VISIBLE
+        validateButtonName.value = "Validate"
+    }
+
+    fun disablePassword(): Unit {
+        setPasswordEnabled.value = View.INVISIBLE
+        validateButtonName.value = "Confirm"
+    }
+
+    fun clear(): Unit {
+        firstname.value = ""
+        lastname.value = ""
+        birthPlace.value = ""
+        birthRegion.value = ""
+        disablePassword()
+    }
+
     fun onSubmitClicked(): Unit {
         if (setPasswordEnabled.value == View.INVISIBLE) {
-            setPasswordEnabled.value = View.VISIBLE
-            validateButtonName.value = "Validate"
+            enablePassword()
         } else {
             busy.value = 0
             Handler().postDelayed({
@@ -63,8 +80,7 @@ class SubmitViewModel(private val app: Application): AndroidViewModel(app), Obse
                 )
                 person.value = pp
                 busy.value = 8
-                setPasswordEnabled.value = View.INVISIBLE
-                validateButtonName.value = "Confirm"
+                disablePassword()
 
                 // Problem that the intent will crash
 
