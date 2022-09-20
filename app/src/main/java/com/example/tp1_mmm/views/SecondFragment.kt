@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.tp1_mmm.R
 import com.example.tp1_mmm.databinding.FragmentSecondBinding
+import com.example.tp1_mmm.viewmodels.SubmitViewModel
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -26,6 +28,11 @@ class SecondFragment : Fragment() {
     ): View? {
 
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
+
+        val viewModel = ViewModelProvider(this)[SubmitViewModel::class.java]
+        binding.submitViewModel = viewModel
+        binding.lifecycleOwner = this
+
         return binding.root
 
     }
@@ -34,7 +41,14 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_ThirdFragment)
+            findNavController().let {
+                it.navigate(R.id.action_SecondFragment_to_FirstFragment)
+            }
+        }
+        binding.buttonSecond2.setOnClickListener {
+            findNavController().let {
+                it.navigate(R.id.action_SecondFragment_to_ThirdFragment)
+            }
         }
     }
 
