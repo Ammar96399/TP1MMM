@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.tp1_mmm.R
+import com.example.tp1_mmm.databinding.FragmentRecyclerListBinding
 import com.example.tp1_mmm.databinding.FragmentSecondBinding
 import com.example.tp1_mmm.viewmodels.SubmitViewModel
 
@@ -26,14 +27,12 @@ class SecondFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
-
-        val viewModel = ViewModelProvider(this)[SubmitViewModel::class.java]
-        binding.submitViewModel = viewModel
-        binding.lifecycleOwner = this
-
-        return binding.root
+        FragmentSecondBinding.inflate(inflater, container, false).let {
+            _binding = it
+            it.submitViewModel = ViewModelProvider(this)[SubmitViewModel::class.java]
+            it.lifecycleOwner = this
+            return it.root
+        }
 
     }
 
@@ -41,14 +40,10 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonSecond.setOnClickListener {
-            findNavController().let {
-                it.navigate(R.id.action_SecondFragment_to_FirstFragment)
-            }
+            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
         binding.buttonSecond2.setOnClickListener {
-            findNavController().let {
-                it.navigate(R.id.action_SecondFragment_to_ThirdFragment)
-            }
+            findNavController().navigate(R.id.action_SecondFragment_to_ThirdFragment)
         }
     }
 

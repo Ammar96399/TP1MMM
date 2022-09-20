@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.example.tp1_mmm.R
 import com.example.tp1_mmm.databinding.FragmentFirstBinding
+import com.example.tp1_mmm.databinding.FragmentSecondBinding
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -34,22 +35,20 @@ class FirstFragment : Fragment() {
 
         setHasOptionsMenu(true)
 
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
-
-        val viewModel = ViewModelProvider(this)[SubmitViewModel::class.java]
-        binding.submitViewModel = viewModel
-        binding.lifecycleOwner = this
-
-        viewModel.person.observe(viewLifecycleOwner
-        ) { user ->
-            Toast.makeText(
-                context,
-                "User ${user.firstName} ${user.lastName} was born in ${user.birthPlace}",
-                Toast.LENGTH_SHORT).show()
+        FragmentFirstBinding.inflate(inflater, container, false).let {
+            _binding = it
+            val viewModel = ViewModelProvider(this)[SubmitViewModel::class.java]
+            it.submitViewModel = viewModel
+            it.lifecycleOwner = this
+            viewModel.person.observe(viewLifecycleOwner
+            ) { user ->
+                Toast.makeText(
+                    context,
+                    "User ${user.firstName} ${user.lastName} was born in ${user.birthPlace}",
+                    Toast.LENGTH_SHORT).show()
+            }
+            return it.root
         }
-
-        return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
