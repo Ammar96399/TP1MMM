@@ -6,8 +6,9 @@ Known issues:
 - [x] Data binding receiving null values
 - [x] Calendar binding type issue
 - [x] Passing data through fragments is not working
-- [ ] Intent crashes
+- [x] Intent crashes
 
 Could be improved:
 
 - Move navigations to FAB
+- Refactor structures e.g. make recycled view an entry point
