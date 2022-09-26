@@ -5,6 +5,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Handler
 import android.view.View
+import android.widget.CalendarView
+import androidx.databinding.BindingAdapter
 import androidx.databinding.Observable
 import androidx.databinding.PropertyChangeRegistry
 import androidx.lifecycle.AndroidViewModel
@@ -13,7 +15,16 @@ import androidx.lifecycle.ViewModel
 import androidx.test.core.app.launchActivity
 import com.example.tp1_mmm.models.Person
 import com.example.tp1_mmm.views.MainActivity
+import java.util.*
 
+data class LongWrapper(var value: Long?)
+
+@BindingAdapter("android:date")
+fun setCalendar(view: CalendarView, value: LongWrapper?) {
+    view.let {
+        value?.value = view.date
+    }
+}
 
 class SubmitViewModel(private val app: Application): AndroidViewModel(app), Observable {
 
@@ -42,6 +53,8 @@ class SubmitViewModel(private val app: Application): AndroidViewModel(app), Obse
     val lastname = MutableLiveData<String>()
     val birthPlace = MutableLiveData<String>()
     val birthRegion = MutableLiveData<String>()
+
+    var calendar = MutableLiveData<LongWrapper>()
 
     private val busy = MutableLiveData<Int>(8)
     val setPasswordEnabled = MutableLiveData(View.INVISIBLE)
