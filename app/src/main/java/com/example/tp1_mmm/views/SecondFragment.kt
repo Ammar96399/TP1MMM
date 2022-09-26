@@ -29,7 +29,7 @@ class SecondFragment : Fragment() {
     ): View? {
         FragmentSecondBinding.inflate(inflater, container, false).let {
             _binding = it
-            it.submitViewModel = ViewModelProvider(this)[SubmitViewModel::class.java]
+            it.submitViewModel = ViewModelProvider(requireActivity())[SubmitViewModel::class.java]
             it.lifecycleOwner = this
             return it.root
         }

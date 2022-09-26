@@ -37,7 +37,7 @@ class FirstFragment : Fragment() {
 
         FragmentFirstBinding.inflate(inflater, container, false).let {
             _binding = it
-            val viewModel = ViewModelProvider(this)[SubmitViewModel::class.java]
+            val viewModel = ViewModelProvider(requireActivity())[SubmitViewModel::class.java]
             it.submitViewModel = viewModel
             it.lifecycleOwner = this
             viewModel.person.observe(viewLifecycleOwner
