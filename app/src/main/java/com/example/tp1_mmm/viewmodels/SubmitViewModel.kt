@@ -94,12 +94,15 @@ class SubmitViewModel(private val app: Application): AndroidViewModel(app), Obse
                 person.value = pp
                 busy.value = 8
                 disablePassword()
-
-                // Problem that the intent will crash
-
-//                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://fr.wikipedia.org"))
-//                app.startActivity(intent)
             }, 1500)
+        }
+    }
+
+    fun onIntentClicked(): Unit {
+
+        Intent(Intent.ACTION_VIEW, Uri.parse("https://fr.wikipedia.org")).let {
+            it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            app.startActivity(it)
         }
     }
 }

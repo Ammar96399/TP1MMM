@@ -112,19 +112,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/previous" />
+                android:text="@string/previous"
+                android:layout_margin="5dp"/>
 
-            <Space
+            <Button
+                android:id="@+id/button_middle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:text="Intent"
+                android:layout_margin="5dp"
+                android:onClick="@{() -> submitViewModel.onIntentClicked()}"/>
 
             <Button
                 android:id="@+id/button_second_2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/next_button" />
+                android:text="@string/next_button"
+                android:layout_margin="5dp" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
