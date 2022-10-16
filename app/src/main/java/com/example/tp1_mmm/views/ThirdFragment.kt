@@ -11,6 +11,7 @@ import com.example.tp1_mmm.R
 import com.example.tp1_mmm.databinding.FragmentRecyclerListBinding
 import com.example.tp1_mmm.databinding.FragmentThirdBinding
 import com.example.tp1_mmm.viewmodels.RecyclerListViewModel
+import com.example.tp1_mmm.vm_factory.RecyclerListViewModelFactory
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -29,7 +30,7 @@ class ThirdFragment : Fragment() {
     ): View? {
         FragmentThirdBinding.inflate(inflater, container, false).let {
             _binding = it
-            it.viewModel = ViewModelProvider(this)[RecyclerListViewModel::class.java]
+            it.viewModel = ViewModelProvider(this, RecyclerListViewModelFactory((requireActivity() as MainActivity).database))[RecyclerListViewModel::class.java]
             it.lifecycleOwner = this
             return it.root
         }
