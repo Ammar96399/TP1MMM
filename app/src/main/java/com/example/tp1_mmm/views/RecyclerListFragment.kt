@@ -1,20 +1,17 @@
 package com.example.tp1_mmm.views
 
-import android.content.Context
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.room.Room
-import com.example.tp1_mmm.R
+import androidx.lifecycle.ViewModelProvider
 import com.example.tp1_mmm.databinding.FragmentRecyclerListBinding
 import com.example.tp1_mmm.db.AppDatabase
 import com.example.tp1_mmm.viewmodels.RecyclerListViewModel
-import com.example.tp1_mmm.vm_factory.ArgedFragment
+import com.example.tp1_mmm.vm_factory.DBArgedFragment
+import com.example.tp1_mmm.vm_factory.DBArgedViewModelFactory
 
-class RecyclerListFragment : ArgedFragment() {
+class RecyclerListFragment() : DBArgedFragment<RecyclerListViewModel>() {
 
     companion object {
         fun newInstance() = RecyclerListFragment()
@@ -32,7 +29,7 @@ class RecyclerListFragment : ArgedFragment() {
     ): View? {
         FragmentRecyclerListBinding.inflate(inflater, container, false).let {
             _binding = it
-            it.viewModel = ViewModelProvider(this)[RecyclerListViewModel::class.java]
+            it.viewModel = ViewModelProvider(this, DBArgedViewModelFactory<RecyclerListViewModel>((requireActivity() as MainActivity).database))[RecyclerListViewModel::class.java]
             it.lifecycleOwner = this
             return it.root
         }

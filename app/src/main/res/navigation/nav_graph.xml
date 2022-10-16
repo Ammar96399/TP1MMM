@@ -40,5 +40,18 @@
         <action
             android:id="@+id/action_ThirdFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_AddPersonInfoToList"
+            app:destination="@id/AddFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/AddFragment"
+        android:name="com.example.tp1_mmm.views.AddFragment"
+        android:label="Add Fragment"
+        tools:layout="@layout/fragment_add">
+
+        <action
+            android:id="@+id/action_BackToList"
+            app:destination="@id/ThirdFragment" />
     </fragment>
 </navigation>

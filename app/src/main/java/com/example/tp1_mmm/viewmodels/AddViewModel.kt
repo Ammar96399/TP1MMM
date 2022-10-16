@@ -1,21 +1,26 @@
 package com.example.tp1_mmm.viewmodels
 
+import android.app.Application
+import android.content.Intent
+import android.net.Uri
+import android.os.Handler
+import android.view.View
 import androidx.databinding.Observable
 import androidx.databinding.PropertyChangeRegistry
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.tp1_mmm.db.AppDatabase
 import com.example.tp1_mmm.models.Person
 import com.example.tp1_mmm.vm_factory.DBArgedViewModel
 import kotlinx.coroutines.launch
 
-// The implementation of recyclerview /w list is inspired by this article:
-// https://proandroiddev.com/flexible-recyclerview-adapter-with-mvvm-and-data-binding-74f75caef66a
+class AddViewModel(private val db: AppDatabase): DBArgedViewModel(db), Observable {
 
-class RecyclerListViewModel(db: AppDatabase) : DBArgedViewModel(db), Observable {
-
+    // Implementation took from
+    // https://developer.android.com/topic/libraries/data-binding/architecture
+    // and
+    // https://www.digitalocean.com/community/tutorials/android-mvvm-livedata-data-binding
     private val callbacks: PropertyChangeRegistry = PropertyChangeRegistry()
 
     override fun addOnPropertyChangedCallback
@@ -31,28 +36,31 @@ class RecyclerListViewModel(db: AppDatabase) : DBArgedViewModel(db), Observable 
         callbacks.notifyCallbacks(this, fieldId, null)
     }
 
-    val datum: LiveData<List<ItemViewModel>>
-        get() = _datum
+    // Class implementation
 
-    private val _datum = MutableLiveData<List<ItemViewModel>>(emptyList())
+    val firstname = MutableLiveData<String>()
+    val lastname = MutableLiveData<String>()
+    val birthPlace = MutableLiveData<String>()
+
+    val person = MutableLiveData<Person>()
 
     private val dao = db.personDao()
 
-    init {
-        loadData()
+    fun clear(): Unit {
+        firstname.value = ""
+        lastname.value = ""
+        birthPlace.value = ""
     }
 
-    fun loadData() {
+    fun onAddButtonClicked() {
+        val pp = Person(
+            firstname.value ?: "foo",
+            lastname.value ?: "bar",
+            birthPlace.value ?: "baz"
+        )
+        person.value = pp
         viewModelScope.launch {
-            val personList = dao.getAll()
-            val viewData = createViewData(personList)
-            _datum.postValue(viewData)
-        }
-    }
-
-    private fun createViewData(personList: List<Person>): List<ItemViewModel> {
-        return personList.mapIndexed { i, v ->
-            ItemViewModel(i, v.firstName, v.lastName, v.birthPlace)
+            dao.insertAll(pp)
         }
     }
 }
