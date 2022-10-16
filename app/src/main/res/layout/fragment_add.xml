@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="submitViewModel"
-            type="com.example.tp1_mmm.viewmodels.SubmitViewModel" />
+            name="viewModel"
+            type="com.example.tp1_mmm.viewmodels.AddViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,8 +34,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
-                android:onClick="@{()-> submitViewModel.onSubmitClicked()}"
-                android:text="@{submitViewModel.validateButtonName}" />
+                android:onClick="@{()-> viewModel.onAddButtonClicked()}"
+                android:text="Add" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -43,10 +43,11 @@
                 android:layout_weight="0.1" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/Reset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
+                android:onClick="@{() -> viewModel.clear()}"
                 android:text="Reset" />
 
             <Space
@@ -55,11 +56,11 @@
                 android:layout_weight="0.1" />
 
             <Button
-                android:id="@+id/NextFrag"
+                android:id="@+id/Back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
-                android:text="Next Frag" />
+                android:text="Back" />
 
         </LinearLayout>
 
@@ -71,32 +72,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:id="@+id/CalendarView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/BirthPlaceView">
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Birthday" />
-
-                <CalendarView
-                    android:id="@+id/calendarView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:date="@{submitViewModel.calendar}"
-                    />
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/BirthPlaceView"
@@ -129,7 +104,7 @@
                         android:ems="10"
                         android:inputType="textPersonName"
                         android:minHeight="48dp"
-                        android:text="@={submitViewModel.birthPlace}" />
+                        android:text="@={viewModel.birthPlace}" />
                 </LinearLayout>
 
                 <Space
@@ -141,22 +116,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/BirthRegion"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Region" />
-
-                    <Spinner
-                        android:id="@+id/spinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:minWidth="200dp"
-                        android:minHeight="40dp" />
-
-                </LinearLayout>
+                    android:orientation="vertical"/>
 
             </LinearLayout>
 
@@ -191,7 +151,7 @@
                         android:ems="10"
                         android:inputType="textPersonName"
                         android:minHeight="48dp"
-                        android:text="@={submitViewModel.firstname}" />
+                        android:text="@={viewModel.firstname}" />
                 </LinearLayout>
 
                 <Space
@@ -218,39 +178,10 @@
                         android:ems="10"
                         android:inputType="textPersonName"
                         android:minHeight="48dp"
-                        android:text="@={submitViewModel.lastname}" />
+                        android:text="@={viewModel.lastname}" />
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/PassView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="24dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/CalendarView"
-                android:visibility="@{submitViewModel.setPasswordEnabled}">
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Password" />
-
-                <EditText
-                    android:id="@+id/editTextTextPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPassword"
-                    android:minHeight="48dp" />
-            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

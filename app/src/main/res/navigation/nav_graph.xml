@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.TP1MMM.FirstFragment"
+        android:name="com.example.tp1_mmm.views.FirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
 
@@ -17,12 +17,41 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.TP1MMM.SecondFragment"
+        android:name="com.example.tp1_mmm.views.SecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
 
         <action
+            android:id="@+id/action_SecondFragment_to_ThirdFragment"
+            app:destination="@id/ThirdFragment" />
+        <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ThirdFragment"
+        android:name="com.example.tp1_mmm.views.ThirdFragment"
+        android:label="@string/third_fragment_label"
+        tools:layout="@layout/fragment_third">
+
+        <action
+            android:id="@+id/action_ThirdFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_ThirdFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_AddPersonInfoToList"
+            app:destination="@id/AddFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/AddFragment"
+        android:name="com.example.tp1_mmm.views.AddFragment"
+        android:label="Add Fragment"
+        tools:layout="@layout/fragment_add">
+
+        <action
+            android:id="@+id/action_BackToList"
+            app:destination="@id/ThirdFragment" />
     </fragment>
 </navigation>

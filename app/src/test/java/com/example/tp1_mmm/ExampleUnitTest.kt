@@ -1,4 +1,4 @@
-package com.example.TP1MMM
+package com.example.tp1_mmm
 
 import org.junit.Test
 

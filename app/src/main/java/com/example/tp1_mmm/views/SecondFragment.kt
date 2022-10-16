@@ -1,12 +1,18 @@
-package com.example.TP1MMM
+package com.example.tp1_mmm.views
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.TP1MMM.databinding.FragmentSecondBinding
+import com.example.tp1_mmm.R
+import com.example.tp1_mmm.databinding.FragmentRecyclerListBinding
+import com.example.tp1_mmm.databinding.FragmentSecondBinding
+import com.example.tp1_mmm.viewmodels.SubmitViewModel
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -23,9 +29,12 @@ class SecondFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
-        return binding.root
+        FragmentSecondBinding.inflate(inflater, container, false).let {
+            _binding = it
+            it.submitViewModel = ViewModelProvider(requireActivity())[SubmitViewModel::class.java]
+            it.lifecycleOwner = this
+            return it.root
+        }
 
     }
 
@@ -34,6 +43,9 @@ class SecondFragment : Fragment() {
 
         binding.buttonSecond.setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+        }
+        binding.buttonSecond2.setOnClickListener {
+            findNavController().navigate(R.id.action_SecondFragment_to_ThirdFragment)
         }
     }
 
