@@ -41,6 +41,12 @@ class AddFragment : DBArgedFragment<AddViewModel>() {
                 it.navigate(R.id.action_BackToList)
             }
         }
+        binding.ValidateButton.setOnClickListener {
+            findNavController().let {
+                it.navigate(R.id.action_BackToList)
+            }
+        }
+
     }
 
     override fun onDestroyView() {
